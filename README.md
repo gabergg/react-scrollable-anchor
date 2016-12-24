@@ -58,7 +58,10 @@ ScrollableManager.configure({offset: -60})
 option       default
 -----------  -----------------------
 `offset`     `0`
+
 `scrolling`  `true`
+
 `history`    `false`
+
 `container`  `body`
 -----------  -----------------------
