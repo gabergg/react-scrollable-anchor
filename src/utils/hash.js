@@ -1,3 +1,7 @@
+export const getHash = () => {
+  return window.location.hash.slice(1)
+}
+
 export const updateHash = (hash, affectHistory) => {
   if (affectHistory) {
     window.location.hash = hash
@@ -6,6 +10,6 @@ export const updateHash = (hash, affectHistory) => {
   }
 }
 
-export const getHash = () => {
-  return window.location.hash.slice(1)
+export const removeHash = () => {
+  history.replaceState("", document.title, window.location.pathname + window.location.search)
 }

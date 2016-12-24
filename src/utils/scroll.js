@@ -7,7 +7,7 @@ export const getElementTopOffset = (element) => {
   return rect.top + getPageScrollTop()
 }
 
-export const getCurrentElement = (element, extraOffset = 0) => {
+export const isElementInView = (element, extraOffset = 0) => {
   const location = getPageScrollTop()
   const offsetTop = getElementTopOffset(element) + extraOffset
   return location >= offsetTop && location < offsetTop + element.offsetHeight

@@ -1,7 +1,7 @@
 import jump from 'jump.js'
 import { debounce } from './utils/func'
-import { getCurrentElement } from './utils/scroll'
-import { getHash, updateHash } from './utils/hash'
+import { isElementInView } from './utils/scroll'
+import { getHash, updateHash, removeHash } from './utils/hash'
 
 class Manager {
   constructor() {
@@ -39,7 +39,7 @@ class Manager {
     for (let i = 0; i < anchorIds.length; i++) {
       const id = anchorIds[i]
       const element = this.anchors[id]
-      if (getCurrentElement(element, this.config.offset)) {
+      if (isElementInView(element, this.config.offset)) {
         anchorInView = true
         if (getHash() !== id) {
           this.forcedHash = true
@@ -51,11 +51,11 @@ class Manager {
 
     if (!anchorInView) {
       this.forcedHash = true
-      updateHash('', false)
+      removeHash()
     }
   }
 
-  handleHashChange = () => {
+  handleHashChange = (e) => {
     if (this.forcedHash) {
       this.forcedHash = false
     } else {
