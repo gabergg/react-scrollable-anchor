@@ -3,13 +3,18 @@ import { debounce } from './utils/func'
 import { isElementInView } from './utils/scroll'
 import { getHash, updateHash, removeHash } from './utils/hash'
 
+const defaultConfig = {
+  offset: 0,
+  scrollDuration: 400,
+  changeHistory: false,
+  scrollContainer: null,
+}
+
 class Manager {
   constructor() {
     this.anchors = {}
     this.forcedHash = false
-    this.config = {
-      offset: 0,
-    }
+    this.config = defaultConfig
 
     window.addEventListener('scroll', debounce(this.handleScroll, 250), false)
     window.addEventListener('hashchange', this.handleHashChange)
@@ -19,9 +24,15 @@ class Manager {
 
   configure = (config) => {
     this.config = {
-      ...this.config,
+      defaultConfig,
       ...config,
     }
+  }
+
+  goToTop = () => {
+    this.forcedHash = true
+    window.scroll(0,0)
+    removeHash()
   }
 
   addAnchor = (id, component) => {
@@ -34,23 +45,23 @@ class Manager {
   }
 
   handleScroll = () => {
+    const {offset, changeHistory, scrollContainer} = this.config
     const anchorIds = Object.keys(this.anchors)
     let anchorInView = false
     for (let i = 0; i < anchorIds.length; i++) {
       const id = anchorIds[i]
       const element = this.anchors[id]
-      if (isElementInView(element, this.config.offset)) {
+      if (isElementInView(element, offset, scrollContainer)) {
         anchorInView = true
         if (getHash() !== id) {
           this.forcedHash = true
-          updateHash(id, false)
+          updateHash(id, changeHistory)
         }
         return
       }
     }
 
     if (!anchorInView) {
-      this.forcedHash = true
       removeHash()
     }
   }
@@ -65,7 +76,7 @@ class Manager {
 
   goToSection = (id) => {
     jump(this.anchors[id], {
-      duration: 400,
+      duration: this.config.scrollDuration,
       offset: this.config.offset,
     })
   }

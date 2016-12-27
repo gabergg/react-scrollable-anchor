@@ -11,6 +11,7 @@
     "clean": "rimraf lib",
     "build": "babel src --out-dir lib",
     "watch": "babel src --out-dir lib --source-maps inline --watch",
+    "example": "cd example && npm i; npm run start",
     "lint": "eslint src",
     "test": "mocha --compilers js:babel/register --recursive src/**/*-test.js",
     "prepublish": "npm run clean && npm run build"

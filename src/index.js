@@ -1,2 +1,4 @@
+import Manager from './Manager'
 export { default } from './ScrollableAnchor'
-export { default as ScrollableManager } from './Manager'
+export const configureAnchors = Manager.configure
+export const goToTop = Manager.goToTop

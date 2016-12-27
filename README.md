@@ -1,4 +1,4 @@
-react-styles-provider
+react-scrollable-anchor
 =====================
 
 [![npm version](https://img.shields.io/npm/v/react-scrollable-anchor.svg?style=flat-square)](https://www.npmjs.com/package/react-scrollable-anchor)
