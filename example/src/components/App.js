@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import Example1 from './Example1'
 import Example2 from './Example2'
 import Example3 from './Example3'
-import ScrollableAnchor, { goToTop } from '../../../src'
+import ScrollableAnchor, { goToTop, goToAnchor } from '../../../src'
 
 const examples = [
   {id: 'example1', label: 'Example 1', component: Example1},
@@ -45,6 +45,7 @@ const styles = {
   link: {
     textDecoration: 'none',
     color: 'black',
+    cursor: 'pointer',
   },
   selectedToggle: {
     backgroundColor: 'black',
@@ -71,7 +72,7 @@ export default class App extends Component {
     )
   }
 
-  renderSingleSectionNav = (section) => {
+  renderSectionNav = (section) => {
     return (
       <div key={section.id} style={styles.singleSectionNav}>
         <a style={styles.link} href={`#${section.id}`}> {section.label} </a>
@@ -79,15 +80,24 @@ export default class App extends Component {
     )
   }
 
-  renderHeader = (fixed, sections) => {
+  renderSectionNavHelper = (section) => {
+    return (
+      <div key={section.id} style={styles.singleSectionNav}>
+        <span style={styles.link} onClick={() => goToAnchor(section.id)}> {section.label} </span>
+      </div>
+    )
+  }
+
+  renderHeader = (fixed, sections, useHelpers) => {
     const headerStyle = fixed ? {...styles.header, ...styles.fixed} : styles.header
+    const sectionRender = useHelpers ? this.renderSectionNavHelper : this.renderSectionNav
     return (
       <div style={headerStyle}>
         <div style={styles.exampleToggles}>
           { examples.map(this.renderExampleToggle) }
         </div>
         <div style={styles.sectionNav}>
-          { sections.map(this.renderSingleSectionNav)}
+          { sections.map(sectionRender) }
         </div>
       </div>
     )

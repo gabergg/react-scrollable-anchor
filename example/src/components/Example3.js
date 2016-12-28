@@ -12,43 +12,26 @@ const sections = [
 
 export default class Example3 extends Component {
 
-  state = {
-    scrollTop: 0,
+  componentWillMount() {
+    configureAnchors({offset: -60, scrollDuration: 200})
   }
-
-  componentDidMount() {
-    const {scrollable} = this.refs
-
-    if (scrollable) {
-      scrollable.addEventListener('scroll', this.handleScroll)
-      configureAnchors({
-        history: true,
-        scrollContainer: scrollable,
-      })
-    }
-  }
-
-  componentWillUnmount() {
-    const {scrollable} = this.refs
-
-    scrollable && scrollable.removeEventListener('scroll', this.handleScroll)
-  }
-
-  handleScroll = () => {
-    this.setState({
-      scrollTop: this.refs.scrollable.scrollTop,
-    })
-  }
-
 
   renderSection = (section) => {
     const props = {...section, sections}
     return (
       <div key={section.id}>
-        <ScrollableAnchor id={section.id}>
-          <Section {...props}/>
+        <ScrollableAnchor key={section.id} id={`${section.id}outer`}>
+          <div style={{height: '900px', display: 'flex', flexDirection: 'column', justifyContent: 'center'}}>
+            <ScrollableAnchor id={`${section.id}inner`}>
+              <div style={{height: '700px', display: 'flex', flexDirection: 'column', justifyContent: 'center'}}>
+                <ScrollableAnchor id={section.id}>
+                  <Section {...props}/>
+                </ScrollableAnchor>
+              </div>
+            </ScrollableAnchor>
+          </div>
         </ScrollableAnchor>
-        <div style={{height: '200px'}}/>
+        <div style={{height: '300px'}}/>
       </div>
     )
   }
@@ -56,11 +39,9 @@ export default class Example3 extends Component {
   render() {
     return (
       <div>
-        { this.props.renderHeader(false, sections) }
-        <div>
-          <div ref='scrollable'>
-            { sections.map(this.renderSection) }
-          </div>
+        { this.props.renderHeader(true, sections, true) }
+        <div style={{marginTop: '60px'}}>
+          { sections.map(this.renderSection) }
         </div>
       </div>
     )

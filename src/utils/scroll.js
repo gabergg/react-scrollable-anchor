@@ -1,17 +1,19 @@
-export const getScrollTop = (scrollContainer) => {
-  if (scrollContainer && typeof scrollContainer.scrollTop === 'number') {
-    return scrollContainer.scrollTop
-  }
+export const getScrollTop = () => {
   return document.body.scrollTop || document.documentElement.scrollTop
 }
 
-export const getElementTopOffset = (element, scrollTop) => {
+export const getElementTopOffset = (element) => {
   const rect = element.getBoundingClientRect()
-  return rect.top + scrollTop
+  return rect.top + getScrollTop()
 }
 
-export const isElementInView = (element, extraOffset = 0, scrollContainer) => {
-  const scrollTop = getScrollTop(scrollContainer)
-  const offsetTop = getElementTopOffset(element, scrollTop) + extraOffset
+export const getElementBottomOffset = (element) => {
+  const rect = element.getBoundingClientRect()
+  return rect.bottom + getScrollTop()
+}
+
+export const isElementInView = (element, extraOffset = 0) => {
+  const scrollTop = getScrollTop()
+  const offsetTop = getElementTopOffset(element) + extraOffset
   return scrollTop >= offsetTop && scrollTop < offsetTop + element.offsetHeight
 }
