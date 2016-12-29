@@ -35,15 +35,13 @@ export default class Page extends Component {
   render() {
     return (
       <div style={styles.container}>
+        <a href='#section1'> Go to section 1 </a>
+        <a href='#section2'> Go to section 2 </a>
         <ScrollableAnchor id={'section1'}>
-          <div>
-            <span> Hello World </span>
-          </div>
+          <div> Hello World </div>
         </ScrollableAnchor>
         <ScrollableAnchor id={'section2'}>
-          <div>
-            <span> How are you world? </span>
-          </div>
+          <div> How are you world? </div>
         </ScrollableAnchor>
       </div>
     )
