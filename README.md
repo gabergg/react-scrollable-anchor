@@ -9,6 +9,17 @@ Lightweight and dynamic anchors in React.
 npm install --save react-scrollable-anchor
 ```
 
+## Motivation
+
+Maybe include motivation
+
+## Examples
+
+Source or Live Demo
+
+To run examples locally, enter `npm run example`, then open your
+browser to localhost:3210.
+
 ## Usage
 
 ### 1. Creating a scrollable anchor

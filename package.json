@@ -29,7 +29,8 @@
     "page",
     "app",
     "static",
-    "site"
+    "site",
+    "jump"
   ],
   "author": "Gabe G'Sell <gabergg@gmail.com>",
   "license": "MIT",
