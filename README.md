@@ -9,15 +9,11 @@ Lightweight and dynamic anchors in React.
 npm install --save react-scrollable-anchor
 ```
 
-## Motivation
-
-Maybe include motivation
-
 ## Examples
 
-Source or Live Demo
+[Source](https://github.com/gabergg/react-scrollable-anchor/tree/master/example/src/components)
 
-To run examples locally, enter `npm run example`, then open your
+To run examples locally, `npm run example`, then open your
 browser to localhost:3210.
 
 ## Usage
@@ -101,8 +97,7 @@ goToAnchor('section1', true)
 
 ## Issues and feature requests
 
-Please open issues on Github. Issues are easier to address if you include
-context and code samples.
+Please open issues on [Github](https://github.com/gabergg/react-scrollable-anchor/issues). Issues are easier to address if you include context and code samples.
 
 ## Contributing
 
