@@ -11,7 +11,7 @@ npm install --save react-scrollable-anchor
 
 ## Examples
 
-[Source](https://github.com/gabergg/react-scrollable-anchor/tree/master/example/src/components)
+[Live Demo](http://gabegsell.com/anchors/) or [Source](https://github.com/gabergg/react-scrollable-anchor/tree/master/example/src/components)
 
 To run examples locally, `npm run example`, then open your
 browser to localhost:3210.

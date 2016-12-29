@@ -2,7 +2,9 @@
   "name": "react-scrollable-anchor-example",
   "description": "Example for react-scrollable-anchor",
   "scripts": {
-    "start": "webpack-dev-server --env.dev"
+    "start": "webpack-dev-server --env.dev",
+    "build": "./node_modules/webpack/bin/webpack.js",
+    "clean": "rm -rf dist"
   },
   "dependencies": {
     "compression": "^1.6.2",
