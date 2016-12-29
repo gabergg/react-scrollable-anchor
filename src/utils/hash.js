@@ -10,6 +10,11 @@ export const updateHash = (hash, affectHistory) => {
   }
 }
 
+// remove hash in url without affecting history or forcing reload
 export const removeHash = () => {
-  history.replaceState("", document.title, window.location.pathname + window.location.search)
+  history.replaceState(
+    "",
+    document.title,
+    window.location.pathname + window.location.search
+  )
 }

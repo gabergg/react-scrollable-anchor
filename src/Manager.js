@@ -1,31 +1,11 @@
 import jump from 'jump.js'
 import { debounce } from './utils/func'
-import { isElementInView, getElementTopOffset, getElementBottomOffset } from './utils/scroll'
+import { getBestAnchorGivenScrollLocation } from './utils/scroll'
 import { getHash, updateHash, removeHash } from './utils/hash'
 
 const defaultConfig = {
   offset: 0,
   scrollDuration: 400,
-}
-
-const isElementMoreProminent = (bestOption, element) => {
-  const bestTopOffset = getElementTopOffset(bestOption)
-  const elementTopOffset = getElementTopOffset(element)
-  if (bestTopOffset === elementTopOffset) {
-    bestBottomOffset = getElementBottomOffset(bestOption)
-    elementBottomOffset = getElementBottomOffset(bestOption)
-    if (bestBottomOffset === elementBottomOffset) {
-      // top and bottom of compared elements are the same,
-      // so return one randomly in a deterministic way
-      return bestOption < element
-    }
-    // top of compared elements is the same, so return whichever
-    // element has its bottom higher on the page
-    return elementBottomOffset < bestBottomOffset
-  }
-  // top of compared elements differ, so return whichever
-  // element has its top higher on the page
-  return elementTopOffset < bestTopOffset
 }
 
 class Manager {
@@ -78,30 +58,12 @@ class Manager {
 
   handleScroll = () => {
     const {offset} = this.config
-    const anchorIds = Object.keys(this.anchors)
-    let bestOption = null
-    let bestId = null
-    anchorIds.forEach((id) => {
-      const element = this.anchors[id]
-      if (isElementInView(element, offset)) {
-        const v0 = performance.now()
-        if (!bestOption) {
-          bestOption = element
-          bestId = id
-        } else if (bestOption && bestOption.contains(element)) {
-          bestOption = element
-          bestId = id
-        } else if (bestOption && !element.contains(bestOption) && isElementMoreProminent(bestOption, element)) {
-          bestOption = element
-          bestId = id
-        }
-      }
-    })
+    const bestAnchorId = getBestAnchorGivenScrollLocation(this.anchors, offset)
 
-    if (bestId && getHash() !== bestId) {
+    if (bestAnchorId && getHash() !== bestAnchorId) {
       this.forcedHash = true
-      updateHash(bestId, false)
-    } else if (!bestId) {
+      updateHash(bestAnchorId, false)
+    } else if (!bestAnchorId) {
       removeHash()
     }
   }

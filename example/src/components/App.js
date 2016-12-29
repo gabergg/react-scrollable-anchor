@@ -2,12 +2,14 @@ import React, { Component } from 'react'
 import Example1 from './Example1'
 import Example2 from './Example2'
 import Example3 from './Example3'
+import Example4 from './Example4'
 import ScrollableAnchor, { goToTop, goToAnchor } from '../../../src'
 
 const examples = [
   {id: 'example1', label: 'Example 1', component: Example1},
   {id: 'example2', label: 'Example 2', component: Example2},
-  {id: 'example3', label: 'Example 3', component: Example3}
+  {id: 'example3', label: 'Example 3', component: Example3},
+  {id: 'example4', label: 'Example 4', component: Example4},
 ]
 
 const styles = {
@@ -83,7 +85,12 @@ export default class App extends Component {
   renderSectionNavHelper = (section) => {
     return (
       <div key={section.id} style={styles.singleSectionNav}>
-        <span style={styles.link} onClick={() => goToAnchor(section.id)}> {section.label} </span>
+        <span
+          style={styles.link}
+          onClick={() => goToAnchor(section.id)}
+        >
+          {section.label}
+        </span>
       </div>
     )
   }
