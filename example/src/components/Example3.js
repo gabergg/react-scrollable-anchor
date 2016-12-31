@@ -10,6 +10,14 @@ const sections = [
   {id: 'section5', label: 'Section 5', backgroundColor: 'lightpink'},
 ]
 
+const styles = {
+  centerColumn: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+  }
+}
+
 export default class Example3 extends Component {
 
   componentWillMount() {
@@ -20,10 +28,10 @@ export default class Example3 extends Component {
     const props = {...section, sections}
     return (
       <div key={section.id}>
-        <ScrollableAnchor key={section.id} id={`${section.id}outer`}>
-          <div style={{height: '900px', display: 'flex', flexDirection: 'column', justifyContent: 'center'}}>
+        <ScrollableAnchor>
+          <div ref={`${section.id}outer`} style={{...styles.centerColumn, height: '900px'}}>
             <ScrollableAnchor id={`${section.id}inner`}>
-              <div style={{height: '700px', display: 'flex', flexDirection: 'column', justifyContent: 'center'}}>
+              <div style={{...styles.centerColumn, backgroundColor: 'yellow', height: '700px'}}>
                 <ScrollableAnchor id={section.id}>
                   <Section {...props}/>
                 </ScrollableAnchor>
@@ -31,7 +39,7 @@ export default class Example3 extends Component {
             </ScrollableAnchor>
           </div>
         </ScrollableAnchor>
-        <div style={{height: '300px'}}/>
+        <div id={`${section.id}classic`} style={{height: '300px', backgroundColor: 'black'}}/>
       </div>
     )
   }

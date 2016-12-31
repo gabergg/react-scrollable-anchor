@@ -12,8 +12,7 @@ const sections = [
 
 const styles = {
   offsetUp: {
-    marginTop: '-550px',
-    opacity: .5,
+    marginTop: '-549px',
   },
   extraTall: {
     height: '700px',

@@ -30,7 +30,7 @@ class Manager {
 
   configure = (config) => {
     this.config = {
-      defaultConfig,
+      ...defaultConfig,
       ...config,
     }
   }
@@ -42,6 +42,7 @@ class Manager {
   }
 
   addAnchor = (id, component) => {
+    // if this is the first anchor, set up listeners
     if (Object.keys(this.anchors).length === 0) {
       this.addListeners()
     }
@@ -51,6 +52,7 @@ class Manager {
 
   removeAnchor = (id) => {
     delete this.anchors[id]
+    // if this is the last anchor, remove listeners
     if (Object.keys(this.anchors).length === 0) {
       this.removeListeners()
     }
@@ -77,10 +79,23 @@ class Manager {
   }
 
   goToSection = (id) => {
-    jump(this.anchors[id], {
-      duration: this.config.scrollDuration,
-      offset: this.config.offset,
-    })
+    let element = this.anchors[id]
+    if (element) {
+      jump(element, {
+        duration: this.config.scrollDuration,
+        offset: this.config.offset,
+      })
+    } else {
+      // make sure that standard hash anchors don't break.
+      // simply jump to them.
+      element = document.getElementById(id)
+      if (element) {
+        jump(element, {
+          duration: 0,
+          offset: this.config.offset,
+        })
+      }
+    }
   }
 }
 
