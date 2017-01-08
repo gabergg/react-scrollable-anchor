@@ -68,7 +68,7 @@ configureAnchors({offset: -60, scrollDuration: 200})
 | option           | default          |
 | ---------------- | ---------------- |
 | `offset`         | `0`              |
-| `scrollDuration` | `false`          |
+| `scrollDuration` | `400`            |
 
 ### 3. Utilities
 
