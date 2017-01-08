@@ -43,11 +43,11 @@
   },
   "homepage": "https://github.com/gabergg/react-scrollable-anchor",
   "dependencies": {
-    "jump.js": "1.0.1",
-    "react-dom": "15.3.0"
+    "jump.js": "1.0.1"
   },
   "peerDependencies": {
-    "react": "^15.3.0"
+    "react": "^15.3.0",
+    "react-dom": "15.3.0"
   },
   "devDependencies": {
     "babel-cli": "^6.18.0",
