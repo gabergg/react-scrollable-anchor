@@ -6,6 +6,7 @@ import { getHash, updateHash, removeHash } from './utils/hash'
 const defaultConfig = {
   offset: 0,
   scrollDuration: 400,
+  keepLastAnchorHash: false,
 }
 
 class Manager {
@@ -59,13 +60,13 @@ class Manager {
   }
 
   handleScroll = () => {
-    const {offset} = this.config
+    const {offset, keepLastAnchorHash} = this.config
     const bestAnchorId = getBestAnchorGivenScrollLocation(this.anchors, offset)
 
     if (bestAnchorId && getHash() !== bestAnchorId) {
       this.forcedHash = true
       updateHash(bestAnchorId, false)
-    } else if (!bestAnchorId) {
+    } else if (!bestAnchorId && !keepLastAnchorHash) {
       removeHash()
     }
   }

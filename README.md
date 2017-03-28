@@ -3,7 +3,7 @@ react-scrollable-anchor
 
 [![npm version](https://img.shields.io/npm/v/react-scrollable-anchor.svg?style=flat-square)](https://www.npmjs.com/package/react-scrollable-anchor)
 
-Lightweight library for smooth scrolling anchors in React, tied to URL hash. 
+Lightweight library for smooth scrolling anchors in React, tied to URL hash.
 
 * Land on correct anchor when page is loaded, based on URL hash value.
 * Scroll smoothly to anchors when URL hash changes. Easy links to sections with `<a href='#sectionId'>`.
@@ -65,10 +65,11 @@ configureAnchors({offset: -60, scrollDuration: 200})
 
 ##### Options:
 
-| option           | default          |
-| ---------------- | ---------------- |
-| `offset`         | `0`              |
-| `scrollDuration` | `400`            |
+| option                | default          |
+| --------------------  | ---------------- |
+| `offset`              | `0`              |
+| `scrollDuration`      | `400`            |
+| `keepLastAnchorHash`  | `false`          |
 
 ### 3. Utilities
 
