@@ -97,6 +97,15 @@ goToAnchor('section1', false)
 goToAnchor('section1', true)
 ```
 
+##### Clear the URL hash without affecting scroll location at all
+
+```js
+import { removeHash } from 'react-scrollable-anchor'
+
+// clear URL hash
+removeHash()
+```
+
 ## Issues and feature requests
 
 Please open issues on [Github](https://github.com/gabergg/react-scrollable-anchor/issues). Issues are easier to address if you include context and code samples.

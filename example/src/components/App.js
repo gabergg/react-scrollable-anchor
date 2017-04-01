@@ -3,7 +3,7 @@ import Example1 from './Example1'
 import Example2 from './Example2'
 import Example3 from './Example3'
 import Example4 from './Example4'
-import ScrollableAnchor, { goToTop, goToAnchor } from '../../../src'
+import ScrollableAnchor, { goToTop, goToAnchor, removeHash } from '../../../src'
 
 const examples = [
   {id: 'example1', label: 'Example 1', component: Example1},
@@ -111,8 +111,10 @@ export default class App extends Component {
   }
 
   toggleExample = (index) => {
-    goToTop()
-    this.setState({exampleIdx: index})
+    if (this.state.exampleIdx !== index) {
+      removeHash()
+      this.setState({exampleIdx: index}, goToTop)
+    }
   }
 
   render() {

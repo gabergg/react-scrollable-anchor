@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react'
+import { goToTop } from '../../../src'
 
 const styles = {
   container: {
@@ -11,6 +12,7 @@ const styles = {
   link: {
     textDecoration: 'none',
     color: 'white',
+    cursor: 'pointer',
   },
 }
 
@@ -48,6 +50,7 @@ export default class Section extends Component {
           <span> {label} </span>
         </div>
         { sections.map(this.renderSectionLink) }
+        <div style={styles.link} onClick={goToTop}> Top </div>
       </div>
     )
   }

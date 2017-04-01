@@ -1,6 +1,6 @@
 import jump from 'jump.js'
 import { debounce } from './utils/func'
-import { getBestAnchorGivenScrollLocation } from './utils/scroll'
+import { getBestAnchorGivenScrollLocation, getScrollTop } from './utils/scroll'
 import { getHash, updateHash, removeHash } from './utils/hash'
 
 const defaultConfig = {
@@ -15,7 +15,7 @@ class Manager {
     this.forcedHash = false
     this.config = defaultConfig
 
-    this.scrollHandler = debounce(this.handleScroll, 250)
+    this.scrollHandler = debounce(this.handleScroll, 100)
     this.forceHashUpdate = debounce(this.handleHashChange, 1)
   }
 
@@ -37,9 +37,9 @@ class Manager {
   }
 
   goToTop = () => {
+    if (getScrollTop() === 0) return
     this.forcedHash = true
     window.scroll(0,0)
-    removeHash()
   }
 
   addAnchor = (id, component) => {
