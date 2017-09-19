@@ -7,8 +7,8 @@ export const getElementOffset = (element) => {
   const scrollTop = getScrollTop()
   const {top, bottom} = element.getBoundingClientRect()
   return {
-    top: top + scrollTop,
-    bottom: bottom + scrollTop
+    top: Math.floor(top + scrollTop),
+    bottom: Math.floor(bottom + scrollTop)
   }
 }
 
