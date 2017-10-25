@@ -1,5 +1,5 @@
 export const getHash = () => {
-  return window.location.hash.slice(1)
+  return decodeURI(window.location.hash.slice(1))
 }
 
 export const updateHash = (hash, affectHistory) => {
