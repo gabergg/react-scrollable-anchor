@@ -1,6 +1,6 @@
 {
   "name": "react-scrollable-anchor",
-  "version": "0.6.1",
+  "version": "0.6.2",
   "description": "Provide smooth scrolling anchors in React.",
   "main": "lib/index.js",
   "files": [
